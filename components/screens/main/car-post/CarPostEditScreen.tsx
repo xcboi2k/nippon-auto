@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import CustomTextInput from '../../../shared/CustomTextInput';
 import ButtonText from '../../../shared/ButtonText';
 import CommentInput from '../../../shared/CommentInput';
 
-export default function vehiclePostCreateScreen() {
+export default function CarPostEditScreen() {
+    const [mode, setMode] = useState("details");
+
     const transmissionItems = [
         { itemID: 1, itemName: 'Manual' },
         { itemID: 2, itemName: 'Automatic' },
@@ -28,17 +31,24 @@ export default function vehiclePostCreateScreen() {
 
     const [isRegistered, setIsRegistered] = useState('Yes')
 
-    
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
             {/* Screen Header */}
             <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px]">
-                <TouchableOpacity onPress={() => {}}>
-                    <Ionicons name="caret-back" size={24} color="#153A56" />
-                </TouchableOpacity>
-                <Text className='text-[20px] font-bold ml-[10px]'>
-                    Create Listing
-                </Text>
+                <View className='flex-row items-center w-[50%]'>
+                    <TouchableOpacity onPress={() => {}}>
+                        <Ionicons name="caret-back" size={24} color="#153A56" />
+                    </TouchableOpacity>
+                    <Text className='text-[20px] font-bold ml-[10px]'>
+                        Edit Listing
+                    </Text>
+                </View>
+                <View className='ml-auto'>
+                    <TouchableOpacity onPress={() => {}}>
+                        <MaterialIcons name="mode-edit" size={24} color="black" />
+                    </TouchableOpacity>
+                </View>
+                
             </View>
 
             <ScrollView>
@@ -48,7 +58,8 @@ export default function vehiclePostCreateScreen() {
                             placeholder: "Enter Vehicle Model",
                             // onChangeText: formik.handleChange("email"),
                             // value: formik.values.email,
-                            autoCapitalize: 'none'
+                            autoCapitalize: 'none',
+                            editable: mode === "edit"
                         }}
                         customLabel='Vehicle Model'
                         padding='25px'
@@ -61,7 +72,8 @@ export default function vehiclePostCreateScreen() {
                                 // onChangeText: formik.handleChange("email"),
                                 // value: formik.values.email,
                                 autoCapitalize: 'none',
-                                keyboardType: 'numeric'
+                                keyboardType: 'numeric',
+                                editable: mode === "edit"
                             }}
                             customLabel='Price'
                             padding='25px'
@@ -74,8 +86,8 @@ export default function vehiclePostCreateScreen() {
                                 // onChangeText: formik.handleChange("email"),
                                 // value: formik.values.email,
                                 autoCapitalize: 'none',
-                                keyboardType: 'numeric'
-                                
+                                keyboardType: 'numeric',
+                                editable: mode === "edit"
                             }}
                             customLabel='Year'
                             padding='25px'
@@ -89,7 +101,8 @@ export default function vehiclePostCreateScreen() {
                             // onChangeText: formik.handleChange("email"),
                             // value: formik.values.email,
                             autoCapitalize: 'none',
-                            keyboardType: 'numeric'
+                            keyboardType: 'numeric',
+                            editable: mode === "edit"
                         }}
                         customLabel='Total Kilometers'
                         padding='25px'
@@ -103,7 +116,7 @@ export default function vehiclePostCreateScreen() {
                             {
                                 transmissionItems.map((item) => (
                                     <TouchableOpacity key={item.itemID} onPress={() => setSelectedTransmission(item.itemName)} className={`w-[72px] h-[48px] rounded-[5px] items-center justify-center m-[5px]
-                                    ${selectedTransmission === item.itemName ? 'bg-[#234791]' : 'bg-[#F4F6F8]'} p-[5px]`}>
+                                    ${selectedTransmission === item.itemName ? 'bg-[#234791]' : 'bg-[#F4F6F8]'} p-[5px]`} disabled={!(mode === "edit")}>
                                         <Text className={`text-[12px] text-center ${selectedTransmission === item.itemName ? 'text-[#F4F6F8]' : 'text-[#234791]'}`}>
                                             {item.itemName}
                                         </Text>
@@ -121,7 +134,7 @@ export default function vehiclePostCreateScreen() {
                             {
                                 classificationItems.map((item) => (
                                     <TouchableOpacity key={item.itemID} onPress={() => setSelectedClassification(item.itemName)} className={`w-[72px] h-[48px] rounded-[5px] items-center justify-center m-[5px]
-                                    ${selectedClassification === item.itemName ? 'bg-[#234791]' : 'bg-[#F4F6F8]'} p-[5px]`}>
+                                    ${selectedClassification === item.itemName ? 'bg-[#234791]' : 'bg-[#F4F6F8]'} p-[5px]`} disabled={!(mode === "edit")}>
                                         <Text className={`text-[12px] text-center ${selectedClassification === item.itemName ? 'text-[#F4F6F8]' : 'text-[#234791]'}`}>
                                             {item.itemName}
                                         </Text>
@@ -140,6 +153,7 @@ export default function vehiclePostCreateScreen() {
                             <TouchableOpacity 
                                 // onPress={pickImage}
                                 className='w-[80px] h-[80px] mr-2 rounded-lg bg-[#234791] items-center justify-center'
+                                disabled={!(mode === "edit")}
                             >
                                 <MaterialCommunityIcons name="image-plus" size={50} color="white" />
                             </TouchableOpacity>
@@ -147,12 +161,12 @@ export default function vehiclePostCreateScreen() {
                             {/* Small Image Previews */}
                             <View className="flex-row ml-2">
                                 {images.map((image, index) => (
-                                <Image
-                                    key={index}
-                                    source={{ uri: image }}
-                                    className="w-[80px] h-[80px] mr-2 rounded-lg"
-                                    resizeMode="cover"
-                                />
+                                    <Image
+                                        key={index}
+                                        source={{ uri: image }}
+                                        className="w-[80px] h-[80px] mr-2 rounded-lg"
+                                        resizeMode="cover"
+                                    />
                                 ))}
                             </View>
                         </View>
@@ -174,13 +188,13 @@ export default function vehiclePostCreateScreen() {
                         </Text>
                         <View className='w-full flex flex-row items-center p-[8px] mb-[10px]'>
                             <TouchableOpacity onPress={() => setIsRegistered('Yes')} className={`w-[72px] h-[48px] rounded-[5px] items-center justify-center m-[5px]
-                            ${isRegistered === 'Yes' ? 'bg-[#234791]' : 'bg-[#F4F6F8]'} p-[5px]`}>
+                            ${isRegistered === 'Yes' ? 'bg-[#234791]' : 'bg-[#F4F6F8]'} p-[5px]`} disabled={!(mode === "edit")}>
                                 <Text className={`text-[12px] text-center ${isRegistered === 'Yes' ? 'text-[#F4F6F8]' : 'text-[#234791]'}`}>
                                     Yes
                                 </Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => setIsRegistered('No')} className={`w-[72px] h-[48px] rounded-[5px] items-center justify-center m-[5px]
-                            ${isRegistered === 'No' ? 'bg-[#234791]' : 'bg-[#F4F6F8]'} p-[5px]`}>
+                            ${isRegistered === 'No' ? 'bg-[#234791]' : 'bg-[#F4F6F8]'} p-[5px]`} disabled={!(mode === "edit")}>
                                 <Text className={`text-[12px] text-center ${isRegistered === 'No' ? 'text-[#F4F6F8]' : 'text-[#234791]'}`}>
                                     No
                                 </Text>
@@ -198,6 +212,7 @@ export default function vehiclePostCreateScreen() {
                                             <TouchableOpacity 
                                                 // onPress={pickImage}
                                                 className='w-[80px] h-[80px] mr-2 rounded-lg bg-[#234791] items-center justify-center'
+                                                disabled={!(mode === "edit")}
                                             >
                                                 <MaterialCommunityIcons name="image-plus" size={50} color="white" />
                                             </TouchableOpacity>
@@ -205,12 +220,12 @@ export default function vehiclePostCreateScreen() {
                                             {/* Small Image Previews */}
                                             <View className="flex-row ml-2">
                                                 {images.map((image, index) => (
-                                                <Image
-                                                    key={index}
-                                                    source={{ uri: image }}
-                                                    className="w-[80px] h-[80px] mr-2 rounded-lg"
-                                                    resizeMode="cover"
-                                                />
+                                                    <Image
+                                                        key={index}
+                                                        source={{ uri: image }}
+                                                        className="w-[80px] h-[80px] mr-2 rounded-lg"
+                                                        resizeMode="cover"
+                                                    />
                                                 ))}
                                             </View>
                                         </View>
@@ -223,8 +238,8 @@ export default function vehiclePostCreateScreen() {
                                                 // onChangeText: formik.handleChange("email"),
                                                 // value: formik.values.email,
                                                 autoCapitalize: 'none',
-                                                keyboardType: 'numeric'
-                                                
+                                                keyboardType: 'numeric',
+                                                editable: mode === "edit"
                                             }}
                                             customLabel='Year Last Registered'
                                             padding='25px'
@@ -235,6 +250,7 @@ export default function vehiclePostCreateScreen() {
                                                 placeholder: "Please enter the reason",
                                                 // onChangeText: formik.handleChange("description"),
                                                 // value: formik.values.description,
+                                                editable: mode === "edit"
                                             }}
                                             customLabel="Reason"
                                             textSize = '16px'
@@ -246,8 +262,31 @@ export default function vehiclePostCreateScreen() {
                     </View>
 
                     <View className='w-full items-center justify-center mb-[15px]'>
-                        <ButtonText text='Submit' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
-                            onPress={() => {}}/>
+                        {
+                            mode === 'edit' ? (
+                                <>
+                                    <TouchableOpacity
+                                        className={`w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px]`} // Static styles in className
+                                        onPress={() => {}}
+                                    >
+                                        <Text style={{ fontSize: 16, color: '#F4F6F8' }}> {/* Inline styles for dynamic textSize and textColor */}
+                                            Save
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        className={`w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px]`} // Static styles in className
+                                        onPress={() => {}}
+                                    >
+                                        <Text style={{ fontSize: 16, color: '#F4F6F8' }}> {/* Inline styles for dynamic textSize and textColor */}
+                                            Cancel
+                                        </Text>
+                                    </TouchableOpacity>
+                                </>
+                            ) : (
+                                <ButtonText text='Submit' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
+                                onPress={() => {}}/>
+                            )
+                        }
                     </View>
                 </View>
             </ScrollView>
