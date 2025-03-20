@@ -5,13 +5,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import CarPostCreateScreen from "./components/screens/main/car-post/CarPostCreateScreen";
 import CarPostDetailsScreen from "./components/screens/main/car-post/CarPostDetailsScreen";
 import CarPostEditScreen from "./components/screens/main/car-post/CarPostEditScreen";
+import FeedScreen from "./components/screens/main/FeedScreen";
+import ProfileViewScreen from "./components/screens/main/profile/ProfileViewScreen";
 
 export default function App() {
   return (
     <>
       {/* <CarPostCreateScreen /> */}
       {/* <CarPostDetailsScreen /> */}
-      <CarPostEditScreen />
+      {/* <CarPostEditScreen /> */}
+      {/* <FeedScreen /> */}
+      <ProfileViewScreen />
     </>
   );
 }
