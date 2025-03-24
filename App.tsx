@@ -7,6 +7,8 @@ import CarPostDetailsScreen from "./components/screens/main/car-post/CarPostDeta
 import CarPostEditScreen from "./components/screens/main/car-post/CarPostEditScreen";
 import FeedScreen from "./components/screens/main/FeedScreen";
 import ProfileViewScreen from "./components/screens/main/profile/ProfileViewScreen";
+import ProfileEditScreen from "./components/screens/main/profile/ProfileEditScreen";
+import UserListingScreen from "./components/screens/main/profile/UserListingScreen";
 
 export default function App() {
   return (
@@ -15,7 +17,9 @@ export default function App() {
       {/* <CarPostDetailsScreen /> */}
       {/* <CarPostEditScreen /> */}
       {/* <FeedScreen /> */}
-      <ProfileViewScreen />
+      {/* <ProfileViewScreen /> */}
+      {/* <ProfileEditScreen /> */}
+      <UserListingScreen />
     </>
   );
 }
