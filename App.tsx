@@ -9,6 +9,7 @@ import FeedScreen from "./components/screens/main/FeedScreen";
 import ProfileViewScreen from "./components/screens/main/profile/ProfileViewScreen";
 import ProfileEditScreen from "./components/screens/main/profile/ProfileEditScreen";
 import UserListingScreen from "./components/screens/main/profile/UserListingScreen";
+import ReviewsScreen from "./components/screens/main/profile/ReviewsScreen";
 
 export default function App() {
   return (
@@ -19,7 +20,8 @@ export default function App() {
       {/* <FeedScreen /> */}
       {/* <ProfileViewScreen /> */}
       {/* <ProfileEditScreen /> */}
-      <UserListingScreen />
+      {/* <UserListingScreen /> */}
+      <ReviewsScreen />
     </>
   );
 }
