@@ -283,7 +283,7 @@ export default function CarPostEditScreen() {
                                     </TouchableOpacity>
                                 </>
                             ) : (
-                                <ButtonText text='Submit' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
+                                <ButtonText text='Edit' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
                                 onPress={() => {}}/>
                             )
                         }

@@ -10,6 +10,11 @@ import ProfileViewScreen from "./components/screens/main/profile/ProfileViewScre
 import ProfileEditScreen from "./components/screens/main/profile/ProfileEditScreen";
 import UserListingScreen from "./components/screens/main/profile/UserListingScreen";
 import ReviewsScreen from "./components/screens/main/profile/ReviewsScreen";
+import ReviewCreateScreen from "./components/screens/main/reviews/ReviewCreateScreen";
+import ReviewEditScreen from "./components/screens/main/reviews/ReviewEditScreen";
+import SellerProfileViewScreen from "./components/screens/main/seller/SellerProfileViewScreen";
+import SellerListingScreen from "./components/screens/main/seller/SellerListingScreen";
+import SellerReviewsScreen from "./components/screens/main/seller/SellerReviewsScreen";
 
 export default function App() {
   return (
@@ -21,7 +26,12 @@ export default function App() {
       {/* <ProfileViewScreen /> */}
       {/* <ProfileEditScreen /> */}
       {/* <UserListingScreen /> */}
-      <ReviewsScreen />
+      {/* <ReviewsScreen /> */}
+      {/* <ReviewCreateScreen /> */}
+      {/* <ReviewEditScreen /> */}
+      {/* <SellerProfileViewScreen /> */}
+      {/* <SellerListingScreen /> */}
+      <SellerReviewsScreen />
     </>
   );
 }
