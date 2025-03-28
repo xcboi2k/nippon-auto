@@ -15,6 +15,9 @@ import ReviewEditScreen from "./components/screens/main/reviews/ReviewEditScreen
 import SellerProfileViewScreen from "./components/screens/main/seller/SellerProfileViewScreen";
 import SellerListingScreen from "./components/screens/main/seller/SellerListingScreen";
 import SellerReviewsScreen from "./components/screens/main/seller/SellerReviewsScreen";
+import SignUpScreen from "./components/screens/auth/SignUpScreen";
+import SignUpAdditionalInformationScreen from "./components/screens/auth/SignUpAdditionalInformationScreen";
+import LoginScreen from "./components/screens/auth/LoginScreen";
 
 export default function App() {
   return (
@@ -31,7 +34,10 @@ export default function App() {
       {/* <ReviewEditScreen /> */}
       {/* <SellerProfileViewScreen /> */}
       {/* <SellerListingScreen /> */}
-      <SellerReviewsScreen />
+      {/* <SellerReviewsScreen /> */}
+      {/* <SignUpScreen /> */}
+      {/* <SignUpAdditionalInformationScreen /> */}
+      <LoginScreen />
     </>
   );
 }

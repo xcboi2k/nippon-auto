@@ -59,9 +59,9 @@ export default function CustomTextInput(
                             <TouchableOpacity onPress={togglePasswordVisibility}>
                                 {
                                     isPasswordVisible ? (
-                                        <Entypo name="eye" size={24} color={'#B3A0FF'} />
+                                        <Entypo name="eye" size={24} color={'#234791'} />
                                     ) : (
-                                        <Entypo name="eye-with-line" size={24} color={'#B3A0FF'} />
+                                        <Entypo name="eye-with-line" size={24} color={'#234791'} />
                                     )
                                 }
                             </TouchableOpacity>
