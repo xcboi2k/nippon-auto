@@ -18,6 +18,9 @@ import SellerReviewsScreen from "./components/screens/main/seller/SellerReviewsS
 import SignUpScreen from "./components/screens/auth/SignUpScreen";
 import SignUpAdditionalInformationScreen from "./components/screens/auth/SignUpAdditionalInformationScreen";
 import LoginScreen from "./components/screens/auth/LoginScreen";
+import MessagesScreen from "./components/screens/main/messages/MessagesScreen";
+import ForgotPasswordScreen from "./components/screens/auth/ForgotPasswordScreen";
+import ChatScreen from "./components/screens/main/messages/ChatScreen";
 
 export default function App() {
   return (
@@ -37,7 +40,10 @@ export default function App() {
       {/* <SellerReviewsScreen /> */}
       {/* <SignUpScreen /> */}
       {/* <SignUpAdditionalInformationScreen /> */}
-      <LoginScreen />
+      {/* <LoginScreen /> */}
+      {/* <ForgotPasswordScreen /> */}
+      {/* <MessagesScreen /> */}
+      {/* <ChatScreen /> */}
     </>
   );
 }
