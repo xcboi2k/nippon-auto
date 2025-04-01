@@ -22,6 +22,7 @@ import MessagesScreen from "./components/screens/main/messages/MessagesScreen";
 import ForgotPasswordScreen from "./components/screens/auth/ForgotPasswordScreen";
 import ChatScreen from "./components/screens/main/messages/ChatScreen";
 import ProfileMenuScreen from "./components/screens/main/profile/ProfileMenuScreen";
+import MainApp from "./components/MainApp";
 
 export default function App() {
   return (
@@ -45,7 +46,9 @@ export default function App() {
       {/* <ForgotPasswordScreen /> */}
       {/* <MessagesScreen /> */}
       {/* <ChatScreen /> */}
-      <ProfileMenuScreen />
+      {/* <ProfileMenuScreen /> */}
+      <StatusBar backgroundColor={'#FFFFFF'}/>
+      <MainApp />
     </>
   );
 }
