@@ -4,8 +4,9 @@ import LoginScreen from '../screens/auth/LoginScreen';
 import SignUpScreen from '../screens/auth/SignUpScreen';
 import SignUpAdditionalInformationScreen from '../screens/auth/SignUpAdditionalInformationScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
+import { RootStackParamList } from '@/types/navigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AuthNavigator = () => {
     return (
@@ -18,7 +19,7 @@ const AuthNavigator = () => {
 
                 <Stack.Screen name="Login" component={LoginScreen}/>
                 <Stack.Screen name="SignUp" component={SignUpScreen}/>
-                <Stack.Screen name="SignUpAdditional" component={SignUpAdditionalInformationScreen} initialParams={{ key: Math.random().toString() }}/>
+                <Stack.Screen name="SignUpAdditional" component={SignUpAdditionalInformationScreen}/>
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen}/>
             </Stack.Navigator>
     )

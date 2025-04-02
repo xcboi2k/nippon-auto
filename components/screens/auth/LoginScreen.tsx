@@ -1,9 +1,40 @@
 import React, { useState } from 'react'
 import { Image, ImageBackground, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
+
 import ButtonText from '@/components/shared/ButtonText'
 import CustomTextInput from '@/components/shared/CustomTextInput'
+import UserStore from '@/stores/UserStore';
+import { RootStackParamList } from '@/types/navigation';
 
 export default function LoginScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+    // initialize formik values
+    const initialValues = { email: "", password: "" };
+
+    const setLoggedIn = UserStore(state => state.setLoggedIn)
+    const handleSubmit = (values: { email: string; password: string; }, { resetForm }: any) => {
+        try{
+            if(values.email === 'test@test.com' && values.password === 'test'){
+                setLoggedIn()
+            }
+        }
+        catch(error){
+            console.log('error')
+        }
+    };
+    const formik = useFormik({
+        initialValues: initialValues,
+        onSubmit: handleSubmit,
+        validationSchema: Yup.object({
+            email: Yup.string().email('Invalid email format').required('Email is required'),
+            password: Yup.string().required('Password is required'),
+        }),
+    });
+
     return (
         <ImageBackground 
             source={require('@/assets/images/sample-background.jpg')} 
@@ -25,7 +56,9 @@ export default function LoginScreen() {
                     <CustomTextInput
                         inputProps={{
                             placeholder: "Enter Email Address",
-                            keyboardType: 'email-address'
+                            keyboardType: 'email-address',
+                            onChangeText: formik.handleChange("email"),
+                            value: formik.values.email,
                         }}
                         customLabel='Email Address'
                         padding='25px'
@@ -34,14 +67,16 @@ export default function LoginScreen() {
                     <CustomTextInput
                         inputProps={{
                             placeholder: "Enter Password",
-                            keyboardType: 'email-address'
+                            keyboardType: 'email-address',
+                            onChangeText: formik.handleChange("password"),
+                            value: formik.values.password,
                         }}
                         customLabel='Password'
                         padding='25px'
                         isPassword={true}
                     />
                     <View className='w-full flex flex-row mb-[15px]'>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
                             <Text className='text-[12px] text-[#234791] italic'>
                                 Forgot your password
                             </Text>
@@ -50,14 +85,14 @@ export default function LoginScreen() {
 
                     <View className='w-full items-center justify-center mb-[15px]'>
                         <ButtonText text='Submit' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
-                            onPress={() => {}}/>
+                            onPress={() => handleSubmit}/>
                     </View>
 
                     <View className='w-full flex flex-row justify-center'>
                         <Text className='text-[12px] text mr-[5px]'>
                             Don't have an account?
                         </Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                             <Text className='text-[12px] text-[#234791] italic'>
                                 Sign Up
                             </Text>

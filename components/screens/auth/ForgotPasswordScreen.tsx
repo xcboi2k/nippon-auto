@@ -1,9 +1,35 @@
 import React, { useState } from 'react'
 import { Image, ImageBackground, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
+
 import ButtonText from '@/components/shared/ButtonText'
 import CustomTextInput from '@/components/shared/CustomTextInput'
+import { RootStackParamList } from '@/types/navigation';
 
 export default function ForgotPasswordScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+    // initialize formik values
+    const initialValues = { email: ""};
+
+    const handleSubmit = (values: { email: string; }, { resetForm }: any) => {
+        try{
+            console.log('email sent')
+        }
+        catch(error){
+            console.log('error')
+        }
+    };
+    const formik = useFormik({
+        initialValues: initialValues,
+        onSubmit: handleSubmit,
+        validationSchema: Yup.object({
+            email: Yup.string().email('Invalid email format').required('Email is required'),
+        }),
+    });
+
     return (
         <ImageBackground 
             source={require('@/assets/images/sample-background.jpg')} 
@@ -25,7 +51,9 @@ export default function ForgotPasswordScreen() {
                     <CustomTextInput
                         inputProps={{
                             placeholder: "Enter Email Address",
-                            keyboardType: 'email-address'
+                            keyboardType: 'email-address',
+                            onChangeText: formik.handleChange("email"),
+                            value: formik.values.email,
                         }}
                         customLabel='Email Address'
                         padding='25px'
@@ -34,11 +62,11 @@ export default function ForgotPasswordScreen() {
 
                     <View className='w-full items-center justify-center mb-[15px]'>
                         <ButtonText text='Submit' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
-                            onPress={() => {}}/>
+                            onPress={() => handleSubmit}/>
                     </View>
 
                     <View className='w-full flex flex-row justify-center'>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                             <Text className='text-[12px] text-[#234791] italic'>
                                 Return to Log In
                             </Text>
