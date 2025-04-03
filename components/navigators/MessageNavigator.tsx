@@ -2,8 +2,9 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MessagesScreen from '../screens/main/messages/MessagesScreen';
 import ChatScreen from '../screens/main/messages/ChatScreen';
+import { RootStackParamList } from '@/types/navigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const MessageNavigator = () => {
     return (

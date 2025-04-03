@@ -5,8 +5,9 @@ import ProfileEditScreen from '../screens/main/profile/ProfileEditScreen';
 import ReviewsScreen from '../screens/main/profile/ReviewsScreen';
 import UserListingScreen from '../screens/main/profile/UserListingScreen';
 import ProfileMenuScreen from '../screens/main/profile/ProfileMenuScreen';
+import { RootStackParamList } from '@/types/navigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const ProfileNavigator = () => {
     return (

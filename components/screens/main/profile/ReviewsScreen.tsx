@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types/navigation';
 
 export default function ReviewsScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const reviews = [
         {
             user_name: 'John Smith',
@@ -43,12 +47,14 @@ export default function ReviewsScreen() {
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
             <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity className='flex-row items-center w-[50%]'
+                    onPress={() => navigation.navigate('ProfileView')}
+                >
                     <Ionicons name="caret-back" size={24} color="#153A56" />
+                    <Text className='text-[20px] font-bold ml-[10px]'>
+                        My Reviews
+                    </Text>
                 </TouchableOpacity>
-                <Text className='text-[20px] font-bold ml-[10px]'>
-                    My Reviews
-                </Text>
             </View>
             <ScrollView>
                 <View className='w-full px-[30px] flex flex-col items-center mb-[15px]'>

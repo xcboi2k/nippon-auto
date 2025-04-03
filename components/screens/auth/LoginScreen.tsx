@@ -10,31 +10,43 @@ import CustomTextInput from '@/components/shared/CustomTextInput'
 import UserStore from '@/stores/UserStore';
 import { RootStackParamList } from '@/types/navigation';
 
+interface FormValues {
+    email: string;
+    password: string;
+  }
+
 export default function LoginScreen() {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     // initialize formik values
-    const initialValues = { email: "", password: "" };
+    const initialValues: FormValues = {
+        email: '',
+        password: '',
+    };
 
     const setLoggedIn = UserStore(state => state.setLoggedIn)
-    const handleSubmit = (values: { email: string; password: string; }, { resetForm }: any) => {
-        try{
-            if(values.email === 'test@test.com' && values.password === 'test'){
-                setLoggedIn()
-            }
-        }
-        catch(error){
-            console.log('error')
-        }
-    };
-    const formik = useFormik({
-        initialValues: initialValues,
-        onSubmit: handleSubmit,
-        validationSchema: Yup.object({
-            email: Yup.string().email('Invalid email format').required('Email is required'),
-            password: Yup.string().required('Password is required'),
-        }),
+    const validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .email('Invalid email format')
+            .required('Email is required'),
+        password: Yup.string().required('Password is required'),
     });
 
+    const formik = useFormik({
+        initialValues,
+        validationSchema,
+        onSubmit: (values) => {
+            if (values.email === 'test@test.com' && values.password === 'test') {
+                console.log('Login successful');
+                setLoggedIn()
+            // Handle successful login (e.g., navigation, state update)
+            }
+        },
+    });
+
+    const handleSubmit = () => {
+        formik.handleSubmit();
+    };
+    
     return (
         <ImageBackground 
             source={require('@/assets/images/sample-background.jpg')} 
@@ -85,7 +97,7 @@ export default function LoginScreen() {
 
                     <View className='w-full items-center justify-center mb-[15px]'>
                         <ButtonText text='Submit' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
-                            onPress={() => handleSubmit}/>
+                            onPress={handleSubmit}/>
                     </View>
 
                     <View className='w-full flex flex-row justify-center'>

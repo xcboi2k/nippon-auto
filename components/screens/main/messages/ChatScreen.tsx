@@ -26,14 +26,14 @@ export default function ChatScreen() {
         >
             <View className="relative flex-1 justify-start pb-[20px] w-full">
                 <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
-                    <View className='flex-row items-center w-[50%]'>
-                        <TouchableOpacity onPress={() => {}}>
-                            <Ionicons name="caret-back" size={24} color="#153A56" />
-                        </TouchableOpacity>
+                    <TouchableOpacity className='flex-row items-center w-[50%]'
+                        onPress={() => {}}
+                    >
+                        <Ionicons name="caret-back" size={24} color="#153A56" />
                         <Text className='text-[20px] font-bold ml-[10px]'>
                             John Doe
                         </Text>
-                    </View>
+                    </TouchableOpacity>
                     <View className='ml-auto'>
                         <TouchableOpacity onPress={() => {}}>
                             <Ionicons name="settings-sharp" size={24} color="#153A56" />

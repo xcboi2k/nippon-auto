@@ -2,17 +2,29 @@ import React, { useState } from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types/navigation';
 
 export default function ProfileViewScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
             <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity className='flex-row items-center w-[50%]'
+                    onPress={() => navigation.navigate('ProfileMain')}
+                >
                     <Ionicons name="caret-back" size={24} color="#153A56" />
+                    <Text className='text-[20px] font-bold ml-[10px]'>
+                        My Profile
+                    </Text>
                 </TouchableOpacity>
-                <Text className='text-[20px] font-bold ml-[10px]'>
-                    My Profile
-                </Text>
+                <View className='ml-auto'>
+                    <TouchableOpacity onPress={() => navigation.navigate('ProfileEdit')}>
+                        <MaterialIcons name="mode-edit" size={24} color="#153A56"  />
+                    </TouchableOpacity>
+                </View>
             </View>
             <ScrollView>
                 <View className='w-full px-[30px] flex flex-row items-center mb-[15px]'>
@@ -48,11 +60,6 @@ export default function ProfileViewScreen() {
                         <Text className='text-[28px] font-bold text-[#333]'>
                             John Doe
                         </Text>
-                        <View className='ml-auto'>
-                            <TouchableOpacity onPress={() => {}}>
-                                <MaterialIcons name="mode-edit" size={24} color="#153A56" />
-                            </TouchableOpacity>
-                        </View>
                     </View>
                     <View className='w-full flex flex-row mb-[10px]'>
                         <Text className='text-[18px] italic text#234791]'>
@@ -107,7 +114,7 @@ export default function ProfileViewScreen() {
                 <View className='w-full items-center justify-center mb-[15px]'>
                     <TouchableOpacity
                         className={`w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px]`} // Static styles in className
-                        onPress={() => {}}
+                        onPress={() => navigation.navigate('MyListings')}
                     >
                         <Text style={{ fontSize: 16, color: '#F4F6F8' }}> {/* Inline styles for dynamic textSize and textColor */}
                             My Listings
@@ -115,7 +122,7 @@ export default function ProfileViewScreen() {
                     </TouchableOpacity>
                     <TouchableOpacity
                         className={`w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px]`} // Static styles in className
-                        onPress={() => {}}
+                        onPress={() => navigation.navigate('MyReviews')}
                     >
                         <Text style={{ fontSize: 16, color: '#F4F6F8' }}> {/* Inline styles for dynamic textSize and textColor */}
                             My Reviews

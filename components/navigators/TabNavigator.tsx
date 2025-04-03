@@ -8,7 +8,9 @@ import FeedNavigator from './FeedNavigator';
 import MessageNavigator from './MessageNavigator';
 import ProfileNavigator from './ProfileNavigator';
 
-const Tab = createBottomTabNavigator();
+import { RootStackParamList } from '@/types/navigation';
+
+const Tab = createBottomTabNavigator<RootStackParamList>();
 
 const TabNavigator = () => {
     

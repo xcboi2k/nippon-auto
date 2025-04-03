@@ -3,8 +3,13 @@ import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'reac
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Feather from '@expo/vector-icons/Feather';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types/navigation';
 
 export default function FeedScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
     const listings = [
         {
             sellerName: 'John Doe',
@@ -97,7 +102,9 @@ export default function FeedScreen() {
                     {
                         listings ? (
                             filteredListings.map((item, index) => (
-                                <TouchableOpacity key={index} className='w-full rounded-[8px] bg-[#F4F6F8] mb-[15px] p-[16px]'>
+                                <TouchableOpacity key={index} className='w-full rounded-[8px] bg-[#F4F6F8] mb-[15px] p-[16px]'
+                                    onPress={() => {}}
+                                >
                                     <View className='w-full flex flex-row items-center mb-[10px]'>
                                         <Image 
                                             source={require('@/assets/images/profile-pic-placeholder.png')}

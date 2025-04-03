@@ -4,8 +4,9 @@ import FeedScreen from '../screens/main/FeedScreen';
 import SellerListingScreen from '../screens/main/seller/SellerListingScreen';
 import SellerProfileViewScreen from '../screens/main/seller/SellerProfileViewScreen';
 import SellerReviewsScreen from '../screens/main/seller/SellerReviewsScreen';
+import { RootStackParamList } from '@/types/navigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const FeedNavigator = () => {
     return (
