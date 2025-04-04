@@ -2,8 +2,12 @@ import React, { useRef, useState } from 'react'
 import { Image, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types/navigation';
 
 export default function ChatScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const messages = [
         { id: 1, text: "Hi! Is the Toyota Camry still available?", time: "10:00 AM", sender: "user" },
         { id: 2, text: "Hello! Yes, it's still available. Are you interested in scheduling a test drive?", time: "10:02 AM", sender: "assistant" },
@@ -27,7 +31,7 @@ export default function ChatScreen() {
             <View className="relative flex-1 justify-start pb-[20px] w-full">
                 <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
                     <TouchableOpacity className='flex-row items-center w-[50%]'
-                        onPress={() => {}}
+                        onPress={() => navigation.navigate('MessageMain')}
                     >
                         <Ionicons name="caret-back" size={24} color="#153A56" />
                         <Text className='text-[20px] font-bold ml-[10px]'>

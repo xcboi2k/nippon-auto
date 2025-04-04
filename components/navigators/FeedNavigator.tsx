@@ -5,6 +5,8 @@ import SellerListingScreen from '../screens/main/seller/SellerListingScreen';
 import SellerProfileViewScreen from '../screens/main/seller/SellerProfileViewScreen';
 import SellerReviewsScreen from '../screens/main/seller/SellerReviewsScreen';
 import { RootStackParamList } from '@/types/navigation';
+import ReviewCreateScreen from '../screens/main/reviews/ReviewCreateScreen';
+import ReviewEditScreen from '../screens/main/reviews/ReviewEditScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,6 +23,8 @@ const FeedNavigator = () => {
                 <Stack.Screen name="SellerProfile" component={SellerProfileViewScreen}/>
                 <Stack.Screen name="SellerListing" component={SellerListingScreen}/>
                 <Stack.Screen name="SellerReviews" component={SellerReviewsScreen}/>
+                <Stack.Screen name="ReviewCreate" component={ReviewCreateScreen}/>
+                <Stack.Screen name="ReviewEdit" component={ReviewEditScreen}/>
             </Stack.Navigator>
     )
 }

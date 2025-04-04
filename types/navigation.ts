@@ -9,6 +9,8 @@ export type RootStackParamList = {
     SellerProfile: undefined;
     SellerListing: undefined;
     SellerReviews: undefined;
+    ReviewCreate: undefined;
+    ReviewEdit: undefined;
 
     MessageMain: undefined;
     Chat: undefined;

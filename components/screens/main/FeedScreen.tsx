@@ -103,7 +103,7 @@ export default function FeedScreen() {
                         listings ? (
                             filteredListings.map((item, index) => (
                                 <TouchableOpacity key={index} className='w-full rounded-[8px] bg-[#F4F6F8] mb-[15px] p-[16px]'
-                                    onPress={() => {}}
+                                    onPress={() => navigation.navigate('SellerProfile')}
                                 >
                                     <View className='w-full flex flex-row items-center mb-[10px]'>
                                         <Image 

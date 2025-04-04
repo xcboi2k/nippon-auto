@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types/navigation';
+
 import CommentInput from '@/components/shared/CommentInput';
 import ButtonText from '@/components/shared/ButtonText';
 
 export default function ReviewCreateScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const [selectedRating, setSelectedRating] = useState<number>(0)
     const handleSelectRating = (rating: number) => {
         setSelectedRating(rating);
@@ -32,12 +37,14 @@ export default function ReviewCreateScreen() {
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
             <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity className='flex-row items-center w-[50%]'
+                    onPress={() => navigation.navigate('SellerProfile')}
+                >
                     <Ionicons name="caret-back" size={24} color="#153A56" />
+                    <Text className='text-[20px] font-bold ml-[10px]'>
+                        Create Review
+                    </Text>
                 </TouchableOpacity>
-                <Text className='text-[20px] font-bold ml-[10px]'>
-                    Create Review
-                </Text>
             </View>
             <ScrollView>
                 <View className='w-full px-[30px] flex flex-col items-center mb-[15px]'>

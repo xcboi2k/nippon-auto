@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types/navigation';
 
 export default function MessagesScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const messagesData = [
         {
             id: 1,
@@ -49,9 +53,9 @@ export default function MessagesScreen() {
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
             <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
-                <TouchableOpacity onPress={() => {}}>
+                {/* <TouchableOpacity onPress={() => {}}>
                     <Ionicons name="caret-back" size={24} color="#153A56" />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <Text className='text-[20px] font-bold ml-[10px]'>
                     Messages
                 </Text>
@@ -60,7 +64,9 @@ export default function MessagesScreen() {
                 <View className='w-full px-[30px] flex flex-col items-center mb-[15px]'>
                     {
                         messagesData.map((message, index) => (
-                            <TouchableOpacity className='w-full rounded-[8px] bg-[#F4F6F8] p-[10px] mb-[10px]' key={index}>
+                            <TouchableOpacity className='w-full rounded-[8px] bg-[#F4F6F8] p-[10px] mb-[10px]' key={index}
+                                onPress={() => navigation.navigate('Chat')}
+                            >
                                 <View className='w-full flex flex-row items-center justify-between mb-[10px]'>
                                     <View className='w-[70%] flex-col'>
                                         <Text className='text-[15px] font-bold text-[#234791] items-start mb-[8px]'>
