@@ -3,12 +3,16 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types/navigation';
 
 import CustomTextInput from '../../../shared/CustomTextInput';
 import ButtonText from '../../../shared/ButtonText';
 import CommentInput from '../../../shared/CommentInput';
 
 export default function CarPostEditScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const [mode, setMode] = useState("details");
 
     const transmissionItems = [
@@ -35,20 +39,14 @@ export default function CarPostEditScreen() {
         <View className="relative flex-1 justify-start pb-[20px] w-full">
             {/* Screen Header */}
             <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px]">
-                <View className='flex-row items-center w-[50%]'>
-                    <TouchableOpacity onPress={() => {}}>
-                        <Ionicons name="caret-back" size={24} color="#153A56" />
-                    </TouchableOpacity>
+                <TouchableOpacity className='flex-row items-center w-[60%]'
+                    onPress={() => navigation.navigate('MyListingDetails')}
+                >
+                    <Ionicons name="caret-back" size={24} color="#153A56" />
                     <Text className='text-[20px] font-bold ml-[10px]'>
                         Edit Listing
                     </Text>
-                </View>
-                <View className='ml-auto'>
-                    <TouchableOpacity onPress={() => {}}>
-                        <MaterialIcons name="mode-edit" size={24} color="black" />
-                    </TouchableOpacity>
-                </View>
-                
+                </TouchableOpacity>
             </View>
 
             <ScrollView>

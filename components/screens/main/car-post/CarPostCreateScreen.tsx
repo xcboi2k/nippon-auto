@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types/navigation';
 
 import CustomTextInput from '../../../shared/CustomTextInput';
 import ButtonText from '../../../shared/ButtonText';
 import CommentInput from '../../../shared/CommentInput';
 
-export default function vehiclePostCreateScreen() {
+export default function CarPostCreateScreen() {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const transmissionItems = [
         { itemID: 1, itemName: 'Manual' },
         { itemID: 2, itemName: 'Automatic' },
@@ -33,12 +37,14 @@ export default function vehiclePostCreateScreen() {
         <View className="relative flex-1 justify-start pb-[20px] w-full">
             {/* Screen Header */}
             <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px]">
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity className='flex-row items-center w-[50%]'
+                    onPress={() => navigation.navigate('FeedMain')}
+                >
                     <Ionicons name="caret-back" size={24} color="#153A56" />
+                    <Text className='text-[20px] font-bold ml-[10px]'>
+                        Create Listing
+                    </Text>
                 </TouchableOpacity>
-                <Text className='text-[20px] font-bold ml-[10px]'>
-                    Create Listing
-                </Text>
             </View>
 
             <ScrollView>

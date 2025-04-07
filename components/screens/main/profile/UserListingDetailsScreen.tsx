@@ -8,8 +8,9 @@ import { RootStackParamList } from '@/types/navigation';
 
 import ButtonText from '@/components/shared/ButtonText';
 
-export default function CarPostDetailsScreen() {
+export default function UserListingDetailsScreen() {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
     const [activeTab, setActiveTab] = useState('Description');
     const tabs = [
         { id: 1, title: 'Description', content: "Lorem Ipsum Description" },
@@ -22,7 +23,7 @@ export default function CarPostDetailsScreen() {
             <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px]">
                 <View className='flex-row items-center w-[50%]'>
                     <TouchableOpacity className='flex-row items-center w-[50%]'
-                        onPress={() => navigation.navigate('FeedMain')}
+                        onPress={() => navigation.navigate('MyListings')}
                     >
                         <Ionicons name="caret-back" size={24} color="#153A56" />
                         <Text className='text-[20px] font-bold ml-[10px]'>
@@ -113,17 +114,8 @@ export default function CarPostDetailsScreen() {
                     }
                 </View>
                 <View className='w-full px-[30px] items-center justify-center'>
-                    <TouchableOpacity
-                        className={`w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px] flex flex-row`} // Static styles in className
-                        onPress={() => {}}
-                    >
-                        <Ionicons name="chatbox-ellipses" size={24} color="#F4F6F8" />
-                        <Text style={{ fontSize: 16, color: '#F4F6F8' }} className='ml-[5px]'> {/* Inline styles for dynamic textSize and textColor */}
-                            Chat Seller
-                        </Text>
-                    </TouchableOpacity>
-                    <ButtonText text='Check Seller Profile' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
-                            onPress={() => navigation.navigate('SellerProfile')}/>
+                    <ButtonText text='Edit' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
+                            onPress={() => navigation.navigate('MyListingEdit')}/>
                 </View>
             </ScrollView>
         </View>

@@ -7,6 +7,8 @@ import SellerReviewsScreen from '../screens/main/seller/SellerReviewsScreen';
 import { RootStackParamList } from '@/types/navigation';
 import ReviewCreateScreen from '../screens/main/reviews/ReviewCreateScreen';
 import ReviewEditScreen from '../screens/main/reviews/ReviewEditScreen';
+import CarPostCreateScreen from '../screens/main/car-post/CarPostCreateScreen';
+import CarPostDetailsScreen from '../screens/main/car-post/CarPostDetailsScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -20,6 +22,8 @@ const FeedNavigator = () => {
             >
 
                 <Stack.Screen name="FeedMain" component={FeedScreen}/>
+                <Stack.Screen name="CarPostCreate" component={CarPostCreateScreen}/>
+                <Stack.Screen name="CarPostDetails" component={CarPostDetailsScreen}/>
                 <Stack.Screen name="SellerProfile" component={SellerProfileViewScreen}/>
                 <Stack.Screen name="SellerListing" component={SellerListingScreen}/>
                 <Stack.Screen name="SellerReviews" component={SellerReviewsScreen}/>

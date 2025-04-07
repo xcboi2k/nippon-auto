@@ -3,9 +3,11 @@ import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'reac
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Feather from '@expo/vector-icons/Feather';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/types/navigation';
+import ButtonText from '@/components/shared/ButtonText';
 
 export default function FeedScreen() {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
@@ -122,9 +124,13 @@ export default function FeedScreen() {
                                     </View>
                                     <Image 
                                         source={require('@/assets/images/item-pic-placeholder.png')}
-                                        className="w-[100%] h-[200px] rounded-[8px]"
+                                        className="w-[100%] h-[300px] rounded-[8px] mb-[10px]"
                                         resizeMode="cover"
                                     />
+                                    <View className='w-full items-center justify-center mb-[10px]'>
+                                        <ButtonText text='Check Details' buttonColor='#234791' textColor='#F4F6F8' textSize='16' 
+                                            onPress={() => navigation.navigate('CarPostDetails')}/>
+                                    </View>
                                 </TouchableOpacity>
                             ))
                         ) : (
@@ -135,6 +141,12 @@ export default function FeedScreen() {
                     }
                 </View>
             </ScrollView>
+            <TouchableOpacity
+                className="absolute bottom-4 right-6 w-14 h-14 rounded-full bg-[#234791] justify-center items-center shadow-lg"
+                onPress={() => navigation.navigate('CarPostCreate')}
+            >
+                <Ionicons name="add" size={28} color="white" />
+            </TouchableOpacity>
         </View>
     )
 }

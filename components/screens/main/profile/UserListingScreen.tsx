@@ -57,7 +57,9 @@ export default function UserListingScreen() {
                 <View className='w-full px-[30px] flex flex-col items-center mb-[15px]'>
                     {
                         carListings.map((item, index) => (
-                            <View className='w-full rounded-[8px] bg-[#F4F6F8] p-[10px] mb-[25px]' key={index}>
+                            <TouchableOpacity className='w-full rounded-[8px] bg-[#F4F6F8] p-[10px] mb-[25px]' key={index}
+                                onPress={() => navigation.navigate('MyListingDetails')}
+                            >
                                 <Image 
                                     source={require('@/assets/images/item-pic-placeholder.png')}
                                     className="w-[100%] h-[200px] rounded-[8px]"
@@ -72,13 +74,8 @@ export default function UserListingScreen() {
                                             {item.model}
                                         </Text>
                                     </View>
-                                    <View className='flex flex-row items-center ml-auto'>
-                                        <TouchableOpacity onPress={() => {}}>
-                                            <MaterialIcons name="edit" size={24} color="#153A56" />
-                                        </TouchableOpacity>
-                                    </View>
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         ))
                     }
                 </View>

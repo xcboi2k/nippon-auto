@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import CarPostCreateScreen from "./components/screens/main/car-post/CarPostCreateScreen";
 import CarPostDetailsScreen from "./components/screens/main/car-post/CarPostDetailsScreen";
-import CarPostEditScreen from "./components/screens/main/car-post/CarPostEditScreen";
+import CarPostEditScreen from "./components/screens/main/profile/CarPostEditScreen";
 import FeedScreen from "./components/screens/main/FeedScreen";
 import ProfileViewScreen from "./components/screens/main/profile/ProfileViewScreen";
 import ProfileEditScreen from "./components/screens/main/profile/ProfileEditScreen";

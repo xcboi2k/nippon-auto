@@ -6,6 +6,8 @@ export type RootStackParamList = {
     ForgotPassword: undefined;
 
     FeedMain: undefined;
+    CarPostCreate: undefined;
+    CarPostDetails: undefined;
     SellerProfile: undefined;
     SellerListing: undefined;
     SellerReviews: undefined;
@@ -19,7 +21,10 @@ export type RootStackParamList = {
     ProfileView: undefined;
     ProfileEdit: undefined;
     MyListings: undefined;
+    MyListingDetails: undefined;
+    MyListingEdit: undefined;
     MyReviews: undefined;
+    MyReviewEdit: undefined;
 
     Home: undefined;
     Messages: undefined;
