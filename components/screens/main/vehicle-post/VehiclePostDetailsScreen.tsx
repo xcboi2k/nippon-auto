@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
@@ -8,22 +8,66 @@ import { RootStackParamList } from '@/types/navigation'
 
 import ButtonText from '@/components/shared/ButtonText'
 
+import toyotaCamry from '@/assets/car-images/toyota-camry.jpg'
+import johnDoe from '@/assets/user-images/john-doe.jpg'
+import janeSmith from '@/assets/user-images/jane-smith.jpg'
+import aliceJohnson from '@/assets/user-images/alice-johnson.jpg'
+import bobBrown from '@/assets/user-images/bob-brown.jpg'
+
+type Comment = {
+    id: string
+    author: string
+    userImage: typeof johnDoe
+    timeAgo: string
+    body: string
+}
+
 export default function VehiclePostDetailsScreen() {
     const navigation =
         useNavigation<NativeStackNavigationProp<RootStackParamList>>()
-    const [activeTab, setActiveTab] = useState('Description')
-    const tabs = [
-        { id: 1, title: 'Description', content: 'Lorem Ipsum Description' },
-        { id: 2, title: 'Features', content: 'Lorem Ipsum Features' },
-        { id: 3, title: 'Vehicle Info', content: 'Lorem Ipsum Vehicle Info' },
+
+    const post = {
+        userImage: johnDoe,
+        username: 'John Doe',
+        location: 'Manila',
+        postedAt: 'January 2, 2025',
+        content:
+            'Just listed my Toyota Camry — low miles, great condition. Open to serious inquiries and meet-ups around Metro Manila.',
+        postImage: toyotaCamry,
+        likes: 24,
+        commentsCount: 5,
+    }
+
+    const comments: Comment[] = [
+        {
+            id: '1',
+            author: 'Jane Smith',
+            userImage: janeSmith,
+            timeAgo: '2h ago',
+            body: 'Looks clean! Is it still available?',
+        },
+        {
+            id: '2',
+            author: 'Alice Johnson',
+            userImage: aliceJohnson,
+            timeAgo: '5h ago',
+            body: 'Sent you a DM about a viewing this weekend.',
+        },
+        {
+            id: '3',
+            author: 'Bob Brown',
+            userImage: bobBrown,
+            timeAgo: '1d ago',
+            body: 'Price negotiable or firm?',
+        },
     ]
 
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
             <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px]">
-                <View className="flex-row items-center w-[50%]">
+                <View className="flex-row items-center flex-1">
                     <TouchableOpacity
-                        className="flex-row items-center w-[50%]"
+                        className="flex-row items-center"
                         onPress={() => navigation.navigate('FeedMain')}
                     >
                         <Ionicons name="caret-back" size={24} color="#153A56" />
@@ -32,106 +76,123 @@ export default function VehiclePostDetailsScreen() {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View className="ml-auto">
-                    <TouchableOpacity onPress={() => {}}>
-                        <MaterialCommunityIcons
-                            name="share"
-                            size={24}
-                            color="#153A56"
-                        />
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity onPress={() => {}}>
+                    <MaterialCommunityIcons
+                        name="share-variant"
+                        size={24}
+                        color="#153A56"
+                    />
+                </TouchableOpacity>
             </View>
+
             <ScrollView>
                 <View className="w-full flex-col px-[30px] mt-2 mb-[10px]">
-                    <View className="w-full h-[215px] overflow-hidden mb-[10px]">
+                    <View className="w-full flex flex-row items-center mb-4">
                         <Image
-                            source={require('@/assets/images/sample-vehicle.jpg')}
-                            className="w-full h-full"
+                            source={post.userImage}
+                            accessibilityLabel={post.username}
+                            className="w-12 h-12 rounded-full mr-3"
                             resizeMode="cover"
                         />
-                    </View>
-                    <View className="w-full flex flex-row items-start mb-[10px]">
-                        <View className="w-[40%] flex flex-row items-center">
-                            <Ionicons name="time" size={15} color="#C2C7CB" />
-                            <Text className="text-[13px] text-[#C2C7CB] ml-[5px]">
-                                January 2, 2025
+                        <View className="flex-1">
+                            <Text className="text-[16px] font-bold text-[#153A56]">
+                                {post.username}
                             </Text>
+                            <View className="flex flex-row items-center mt-1 flex-wrap">
+                                <Ionicons
+                                    name="time-outline"
+                                    size={14}
+                                    color="#C2C7CB"
+                                />
+                                <Text className="text-[13px] text-[#C2C7CB] ml-1 mr-3">
+                                    {post.postedAt}
+                                </Text>
+                                <Ionicons
+                                    name="location-outline"
+                                    size={14}
+                                    color="#C2C7CB"
+                                />
+                                <Text className="text-[13px] text-[#C2C7CB] ml-1">
+                                    {post.location}
+                                </Text>
+                            </View>
                         </View>
-                        <View className="w-[50%] flex flex-row items-center">
+                    </View>
+
+                    <View className="w-full h-[215px] overflow-hidden mb-3 rounded-lg">
+                        <Image
+                            source={post.postImage}
+                            className="w-full h-full"
+                            resizeMode="cover"
+                            accessibilityLabel="Post image"
+                        />
+                    </View>
+
+                    <Text className="text-[16px] text-[#153A56] leading-[22px] mb-4">
+                        {post.content}
+                    </Text>
+
+                    <View className="flex flex-row gap-6 mb-6">
+                        <View className="flex flex-row items-center gap-1">
                             <Ionicons
-                                name="location"
-                                size={15}
-                                color="#C2C7CB"
+                                name="heart-outline"
+                                size={18}
+                                color="#153A56"
                             />
-                            <Text className="text-[13px] text-[#C2C7CB] ml-[5px]">
-                                Manila
+                            <Text className="text-sm text-[#153A56]">
+                                {post.likes} Likes
                             </Text>
                         </View>
-                    </View>
-                    <Text className="text-[24px] font-bold text-[#234791] items-start mb-[5px]">
-                        PHP 25,000
-                    </Text>
-                    <Text className="text-[24px] font-bold text-[#153A56] items-start mb-[15px]">
-                        Car
-                    </Text>
-                    <View className="w-full flex flex-row justify-between">
-                        <View className="flex-1 items-center bg-[#F4F6F8] rounded-l-[8px] px-[10px] py-[15px] mr-[3px] justify-center">
-                            <Text className="text-[14px] font-bold text-[#234791]">
-                                1999
-                            </Text>
-                            <Text className="text-[12px] text-[#C2C7CB]">
-                                Year
-                            </Text>
-                        </View>
-                        <View className="flex-1 items-center bg-[#F4F6F8] px-[10px] py-[15px] mr-[3px] justify-center">
-                            <Text className="text-[14px] font-bold text-[#234791]">
-                                Manual
-                            </Text>
-                            <Text className="text-[12px] text-[#C2C7CB]">
-                                Transmission
-                            </Text>
-                        </View>
-                        <View className="flex-1 items-center bg-[#F4F6F8] rounded-r-[8px] px-[10px] py-[15px] ml-[3px] justify-center">
-                            <Text className="text-[14px] font-bold text-[#234791]">
-                                80,000
-                            </Text>
-                            <Text className="text-[12px] text-[#C2C7CB]">
-                                KM/s
+                        <View className="flex flex-row items-center gap-1">
+                            <Ionicons
+                                name="chatbubble-outline"
+                                size={18}
+                                color="#153A56"
+                            />
+                            <Text className="text-sm text-[#153A56]">
+                                {post.commentsCount} Comments
                             </Text>
                         </View>
                     </View>
                 </View>
-                <View className="w-full px-[30px] flex-1 bg-[#FFFFFF] mb-[15px]">
-                    <View className="flex flex-row border-b-[1px] border-b-[#CCC]">
-                        {tabs.map((tab) => (
-                            <TouchableOpacity
-                                key={tab.id}
-                                className="flex-1 p-[10px] items-center"
-                                onPress={() => setActiveTab(tab.title)}
+
+                <View className="w-full px-[30px] mb-4">
+                    <Text className="text-[16px] font-bold text-[#153A56] mb-3">
+                        Comments ({comments.length})
+                    </Text>
+                    <View className="rounded-lg bg-[#F4F6F8] overflow-hidden">
+                        {comments.map((c, i) => (
+                            <View
+                                key={c.id}
+                                className={`flex flex-row px-4 py-3 ${i < comments.length - 1 ? 'border-b border-[#E0E4E8]' : ''}`}
                             >
-                                <Text
-                                    className={`text-[14px] font-bold ${activeTab === tab.title ? 'text-[#234791]' : 'text-[#C2C7CB]'}`}
-                                >
-                                    {tab.title}
-                                </Text>
-                            </TouchableOpacity>
-                        ))}
-                    </View>
-                    {tabs.map(
-                        (tab) =>
-                            activeTab === tab.title && (
-                                <View key={tab.id} className="p-[16px]">
-                                    <Text className="text-[12px] text-[#1a71a]">
-                                        {tab.content}
+                                <Image
+                                    source={c.userImage}
+                                    accessibilityLabel={c.author}
+                                    className="w-10 h-10 rounded-full mr-3"
+                                    resizeMode="cover"
+                                />
+                                <View className="flex-1">
+                                    <View className="flex flex-row items-baseline justify-between gap-2">
+                                        <Text className="text-[14px] font-bold text-[#153A56]">
+                                            {c.author}
+                                        </Text>
+                                        <Text className="text-[12px] text-[#C2C7CB]">
+                                            {c.timeAgo}
+                                        </Text>
+                                    </View>
+                                    <Text className="text-[14px] text-[#153A56] mt-1 leading-[20px]">
+                                        {c.body}
                                     </Text>
                                 </View>
-                            )
-                    )}
+                            </View>
+                        ))}
+                    </View>
                 </View>
-                <View className="w-full px-[30px] items-center justify-center">
+
+                <View className="w-full px-[30px] items-center justify-center pb-6">
                     <TouchableOpacity
-                        className={`w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px] flex flex-row`} // Static styles in className
+                        className="w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px] flex flex-row"
                         onPress={() => {}}
                     >
                         <Ionicons
@@ -139,17 +200,12 @@ export default function VehiclePostDetailsScreen() {
                             size={24}
                             color="#F4F6F8"
                         />
-                        <Text
-                            style={{ fontSize: 16, color: '#F4F6F8' }}
-                            className="ml-[5px]"
-                        >
-                            {' '}
-                            {/* Inline styles for dynamic textSize and textColor */}
-                            Chat Seller
+                        <Text className="text-[16px] text-[#F4F6F8] ml-[8px]">
+                            Message author
                         </Text>
                     </TouchableOpacity>
                     <ButtonText
-                        text="Check Seller Profile"
+                        text="View profile"
                         buttonColor="#234791"
                         textColor="#F4F6F8"
                         textSize="16"
