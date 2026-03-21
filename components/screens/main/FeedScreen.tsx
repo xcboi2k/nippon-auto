@@ -1,25 +1,14 @@
-import React, { useState } from 'react'
-import {
-    Image,
-    ScrollView,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-} from 'react-native'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
-import Feather from '@expo/vector-icons/Feather'
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
+import React from 'react'
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '@/types/navigation'
-import ButtonText from '@/components/shared/ButtonText'
 
 // Import car images
 import toyotaCamry from '@/assets/car-images/toyota-camry.jpg'
 import hondaOdyssey from '@/assets/car-images/honda-odyssey.jpg'
-import fordF150 from '@/assets/car-images/ford-f150.jpg'
 import hdSportster from '@/assets/car-images/hd-sportster.jpg'
 import r34Gtr from '@/assets/car-images/r34-gtr.jpg'
 
@@ -34,62 +23,50 @@ export default function FeedScreen() {
     const navigation =
         useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
-    const listings = [
+    const posts = [
         {
-            sellerName: 'John Doe',
-            sellerLocation: 'New York, USA',
-            car_model: 'Toyota Camry',
-            classification_type: 'Car',
-            carImageAddress: toyotaCamry,
-            userImageAddress: johnDoe,
+            userImage: johnDoe,
+            username: 'John Doe',
+            content:
+                'Just listed my Toyota Camry — low miles, great condition.',
+            postImage: toyotaCamry,
+            likes: 24,
+            comments: 5,
         },
         {
-            sellerName: 'Jane Smith',
-            sellerLocation: 'Los Angeles, USA',
-            car_model: 'Honda Odyssey',
-            classification_type: 'Van',
-            carImageAddress: hondaOdyssey,
-            userImageAddress: janeSmith,
+            userImage: janeSmith,
+            username: 'Jane Smith',
+            content:
+                'Family road trip ready in the Odyssey. Any tips for long drives?',
+            postImage: hondaOdyssey,
+            likes: 18,
+            comments: 12,
         },
         {
-            sellerName: 'Alice Johnson',
-            sellerLocation: 'Chicago, USA',
-            car_model: 'Ford F-150',
-            classification_type: 'Truck/Bus',
-            carImageAddress: fordF150,
-            userImageAddress: aliceJohnson,
+            userImage: aliceJohnson,
+            username: 'Alice Johnson',
+            content:
+                'Weekend haul with the F-150. No photo this time — text only.',
+            likes: 9,
+            comments: 3,
         },
         {
-            sellerName: 'Bob Brown',
-            sellerLocation: 'Houston, USA',
-            car_model: 'Harley-Davidson Sportster',
-            classification_type: 'Motorcycle',
-            carImageAddress: hdSportster,
-            userImageAddress: bobBrown,
+            userImage: bobBrown,
+            username: 'Bob Brown',
+            content: 'Nothing beats the open road on two wheels.',
+            postImage: hdSportster,
+            likes: 41,
+            comments: 8,
         },
         {
-            sellerName: 'Charlie Davis',
-            sellerLocation: 'Phoenix, USA',
-            car_model: 'Nissan Skyline R34 GTR',
-            classification_type: 'Car',
-            carImageAddress: r34Gtr,
-            userImageAddress: charlieDavis,
+            userImage: charlieDavis,
+            username: 'Charlie Davis',
+            content: 'Dream car acquired. R34 GTR photos incoming.',
+            postImage: r34Gtr,
+            likes: 156,
+            comments: 34,
         },
     ]
-
-    const [searchText, setSearchText] = useState('')
-    const filters = ['All', 'Car', 'Van', 'Truck/Bus', 'Motorcycle']
-    const [activeFilter, setActiveFilter] = useState(filters[0])
-
-    const filteredListings = listings.filter((listing) => {
-        const filterMatch =
-            activeFilter === 'All' ||
-            listing.classification_type === activeFilter
-        const searchTermMatch =
-            searchText.length === 0 || listing.car_model.includes(searchText)
-
-        return filterMatch && searchTermMatch
-    })
 
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
@@ -100,140 +77,76 @@ export default function FeedScreen() {
                     resizeMode="cover"
                 />
             </View>
-            <View className="w-full flex flex-row items-center px-[30px] mb-[10px]">
-                <View className="flex-row items-center bg-gray-100 rounded-[20px] px-[10px] py-[5px]">
-                    <FontAwesome name="search" size={24} color="#153A56" />
-                    <TextInput
-                        className="ml-[20px] flex-1 text-[#153A56] text-[15px]"
-                        placeholder="Search"
-                        onChangeText={(text) => setSearchText(text)}
-                        value={searchText}
-                    />
-                </View>
-            </View>
-            <View className="w-full flex flex-row items-center px-[30px] mb-[15px]">
-                {filters.map((filter) => (
-                    <TouchableOpacity
-                        key={filter}
-                        className={`flex-1 items-center justify-center p-[10px] mr-[2px] ${
-                            activeFilter === filter
-                                ? 'bg-[#234791]'
-                                : 'bg-[#F4F6F8]'
-                        }`}
-                        onPress={() => setActiveFilter(filter)}
-                    >
-                        {filter !== 'All' ? (
-                            filter === 'Car' ? (
-                                <FontAwesome5
-                                    name="car-side"
-                                    size={24}
-                                    color={
-                                        activeFilter === filter
-                                            ? '#FFFFFF'
-                                            : '#C2C7CB'
-                                    }
-                                />
-                            ) : filter === 'Van' ? (
-                                <FontAwesome5
-                                    name="shuttle-van"
-                                    size={24}
-                                    color={
-                                        activeFilter === filter
-                                            ? '#FFFFFF'
-                                            : '#C2C7CB'
-                                    }
-                                />
-                            ) : filter === 'Truck/Bus' ? (
-                                <FontAwesome5
-                                    name="truck"
-                                    size={24}
-                                    color={
-                                        activeFilter === filter
-                                            ? '#FFFFFF'
-                                            : '#C2C7CB'
-                                    }
-                                />
-                            ) : filter === 'Motorcycle' ? (
-                                <FontAwesome5
-                                    name="motorcycle"
-                                    size={26}
-                                    color={
-                                        activeFilter === filter
-                                            ? '#FFFFFF'
-                                            : '#C2C7CB'
-                                    }
-                                />
-                            ) : null
-                        ) : (
-                            <Feather
-                                name="menu"
-                                size={28}
-                                color={
-                                    activeFilter === filter
-                                        ? '#FFFFFF'
-                                        : '#C2C7CB'
-                                }
-                            />
-                        )}
-                    </TouchableOpacity>
-                ))}
-            </View>
+
             <ScrollView>
                 <View className="w-full px-[30px] mb-[15px] justify-center">
-                    {listings ? (
-                        filteredListings.map((item, index) => (
-                            <TouchableOpacity
-                                key={index}
-                                className="w-full rounded-[8px] bg-[#F4F6F8] mb-[15px] p-[16px]"
-                                onPress={() =>
-                                    navigation.navigate('SellerProfile')
-                                }
+                    {posts.length ? (
+                        posts.map((post, idx) => (
+                            <View
+                                key={idx}
+                                className="w-full max-w-md bg-[#F4F6F8] rounded-lg p-4 shadow mb-[15px]"
                             >
-                                <View className="w-full flex flex-row items-center mb-[10px]">
+                                <View className="flex flex-row items-center mb-3">
                                     <Image
-                                        source={item.userImageAddress}
-                                        className="w-[40px] h-[40px] rounded-[20px] mr-[8px]"
+                                        source={post.userImage}
+                                        accessibilityLabel={post.username}
+                                        className="w-10 h-10 rounded-full mr-3"
                                         resizeMode="cover"
                                     />
-                                    <View className="flex-col align-start">
-                                        <Text className="text-[16px] font-bold text-[#153A56]">
-                                            {item.sellerName}
-                                        </Text>
-                                        <Text className="text-[14px] text-[#C2C7CB]">
-                                            {item.sellerLocation}
+                                    <View>
+                                        <Text className="font-bold text-[#153A56]">
+                                            {post.username}
                                         </Text>
                                     </View>
                                 </View>
-                                <Image
-                                    source={item.carImageAddress}
-                                    className="w-[100%] h-[300px] rounded-[8px] mb-[10px]"
-                                    resizeMode="cover"
-                                />
-                                <View className="w-full items-center justify-center mb-[10px]">
-                                    <ButtonText
-                                        text="Check Details"
-                                        buttonColor="#234791"
-                                        textColor="#F4F6F8"
-                                        textSize="16"
-                                        onPress={() =>
-                                            navigation.navigate(
-                                                'CarPostDetails'
-                                            )
-                                        }
+
+                                <Text className="mb-2 text-[#153A56]">
+                                    {post.content}
+                                </Text>
+
+                                {post.postImage ? (
+                                    <Image
+                                        source={post.postImage}
+                                        accessibilityLabel="Post"
+                                        className="w-full h-60 rounded mb-2"
+                                        resizeMode="cover"
                                     />
+                                ) : null}
+
+                                <View className="flex flex-row gap-4">
+                                    <View className="flex flex-row items-center gap-1">
+                                        <Ionicons
+                                            name="heart-outline"
+                                            size={16}
+                                            color="#153A56"
+                                        />
+                                        <Text className="text-sm text-[#153A56]">
+                                            {post.likes} Likes
+                                        </Text>
+                                    </View>
+                                    <View className="flex flex-row items-center gap-1">
+                                        <Ionicons
+                                            name="chatbubble-outline"
+                                            size={16}
+                                            color="#153A56"
+                                        />
+                                        <Text className="text-sm text-[#153A56]">
+                                            {post.comments} Comments
+                                        </Text>
+                                    </View>
                                 </View>
-                            </TouchableOpacity>
+                            </View>
                         ))
                     ) : (
-                        <Text className="text-[16px] font-bold text-[#153A56]">
-                            There are no listings available right now.
+                        <Text className="text-[#153A56] font-bold">
+                            No posts yet.
                         </Text>
                     )}
                 </View>
             </ScrollView>
             <TouchableOpacity
                 className="absolute bottom-4 right-6 w-14 h-14 rounded-full bg-[#234791] justify-center items-center shadow-lg"
-                onPress={() => navigation.navigate('CarPostCreate')}
+                onPress={() => navigation.navigate('VehiclePostCreate')}
             >
                 <Ionicons name="add" size={28} color="white" />
             </TouchableOpacity>
