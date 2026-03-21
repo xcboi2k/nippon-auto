@@ -25,8 +25,8 @@ export type RootStackParamList = {
     ProfileView: undefined
     ProfileEdit: undefined
     MyPosts: undefined
-    MyPostDetails: undefined
-    MyPostEdit: undefined
+    MyPostDetails: { postId: string }
+    MyPostEdit: { postId?: string }
     MyListings: undefined
     MyListingDetails: undefined
     MyListingEdit: undefined
