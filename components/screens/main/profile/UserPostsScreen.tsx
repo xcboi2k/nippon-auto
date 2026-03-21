@@ -13,10 +13,10 @@ export default function UserPostsScreen() {
 
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
-            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
+            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[50px] mb-[10px]">
                 <TouchableOpacity
                     className="flex-row items-center w-[50%]"
-                    onPress={() => navigation.navigate('ProfileView')}
+                    onPress={() => navigation.navigate('ProfileMain')}
                 >
                     <Ionicons name="caret-back" size={24} color="#153A56" />
                     <Text className="text-[20px] font-bold ml-[10px]">
@@ -53,7 +53,7 @@ export default function UserPostsScreen() {
                                     </View>
                                 </View>
 
-                                <Text className="mb-2 text-[#153A56]">
+                                <Text className="mb-2 text-black">
                                     {post.content}
                                 </Text>
 

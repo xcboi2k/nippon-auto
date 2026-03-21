@@ -7,7 +7,7 @@ export type RootStackParamList = {
 
     FeedMain: undefined
     VehiclePostCreate: undefined
-    VehiclePostDetails: undefined
+    VehiclePostDetails: { postId?: string }
 
     MarketplaceMain: undefined
     VehicleListingCreate: undefined
@@ -34,6 +34,7 @@ export type RootStackParamList = {
     MyReviewEdit: undefined
 
     Home: undefined
+    Marketplace: undefined
     Messages: undefined
     Profile: undefined
 }

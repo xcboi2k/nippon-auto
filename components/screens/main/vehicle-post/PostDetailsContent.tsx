@@ -43,7 +43,7 @@ export default function PostDetailsContent({
 }: Props) {
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
-            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px]">
+            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[50px]">
                 <View className="flex-row items-center flex-1">
                     <TouchableOpacity
                         className="flex-row items-center"
@@ -81,17 +81,17 @@ export default function PostDetailsContent({
                                 <Ionicons
                                     name="time-outline"
                                     size={14}
-                                    color="#C2C7CB"
+                                    color="black"
                                 />
-                                <Text className="text-[13px] text-[#C2C7CB] ml-1 mr-3">
+                                <Text className="text-[13px] text-black ml-1 mr-3">
                                     {post.postedAt}
                                 </Text>
                                 <Ionicons
                                     name="location-outline"
                                     size={14}
-                                    color="#C2C7CB"
+                                    color="black"
                                 />
-                                <Text className="text-[13px] text-[#C2C7CB] ml-1">
+                                <Text className="text-[13px] text-black] ml-1">
                                     {post.location}
                                 </Text>
                             </View>
@@ -158,40 +158,17 @@ export default function PostDetailsContent({
                                         <Text className="text-[14px] font-bold text-[#153A56]">
                                             {c.author}
                                         </Text>
-                                        <Text className="text-[12px] text-[#C2C7CB]">
+                                        <Text className="text-[12px] text-black">
                                             {c.timeAgo}
                                         </Text>
                                     </View>
-                                    <Text className="text-[14px] text-[#153A56] mt-1 leading-[20px]">
+                                    <Text className="text-[14px] text-black mt-1 leading-[20px]">
                                         {c.body}
                                     </Text>
                                 </View>
                             </View>
                         ))}
                     </View>
-                </View>
-
-                <View className="w-full px-[30px] items-center justify-center pb-6">
-                    <TouchableOpacity
-                        className="w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px] flex flex-row"
-                        onPress={onPressMessageAuthor}
-                    >
-                        <Ionicons
-                            name="chatbox-ellipses"
-                            size={24}
-                            color="#F4F6F8"
-                        />
-                        <Text className="text-[16px] text-[#F4F6F8] ml-[8px]">
-                            Message author
-                        </Text>
-                    </TouchableOpacity>
-                    <ButtonText
-                        text="View profile"
-                        buttonColor="#234791"
-                        textColor="#F4F6F8"
-                        textSize="16"
-                        onPress={onPressViewProfile}
-                    />
                 </View>
             </ScrollView>
         </View>

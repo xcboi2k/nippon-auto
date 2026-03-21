@@ -12,7 +12,7 @@ export default function ProfileViewScreen() {
 
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
-            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
+            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[50px] mb-[10px]">
                 <TouchableOpacity
                     className="flex-row items-center w-[50%]"
                     onPress={() => navigation.navigate('ProfileMain')}
@@ -129,29 +129,6 @@ export default function ProfileViewScreen() {
                         non proident, sunt in culpa qui officia deserunt mollit
                         anim id est laborum.
                     </Text>
-                </View>
-
-                <View className="w-full items-center justify-center mb-[15px]">
-                    <TouchableOpacity
-                        className={`w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px]`} // Static styles in className
-                        onPress={() => navigation.navigate('MyListings')}
-                    >
-                        <Text style={{ fontSize: 16, color: '#F4F6F8' }}>
-                            {' '}
-                            {/* Inline styles for dynamic textSize and textColor */}
-                            My Listings
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        className={`w-[70%] bg-[#234791] p-[15px] rounded-[20px] items-center justify-center mb-[10px]`} // Static styles in className
-                        onPress={() => navigation.navigate('MyReviews')}
-                    >
-                        <Text style={{ fontSize: 16, color: '#F4F6F8' }}>
-                            {' '}
-                            {/* Inline styles for dynamic textSize and textColor */}
-                            My Reviews
-                        </Text>
-                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </View>

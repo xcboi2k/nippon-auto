@@ -20,11 +20,11 @@ export default function VehicleListingDetailsScreen() {
 
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
-            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px]">
+            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[50px]">
                 <View className="flex-row items-center w-[50%]">
                     <TouchableOpacity
                         className="flex-row items-center w-[50%]"
-                        onPress={() => navigation.navigate('FeedMain')}
+                        onPress={() => navigation.navigate('MarketplaceMain')}
                     >
                         <Ionicons name="caret-back" size={24} color="#153A56" />
                         <Text className="text-[20px] font-bold ml-[10px]">
@@ -53,18 +53,14 @@ export default function VehicleListingDetailsScreen() {
                     </View>
                     <View className="w-full flex flex-row items-start mb-[10px]">
                         <View className="w-[40%] flex flex-row items-center">
-                            <Ionicons name="time" size={15} color="#C2C7CB" />
-                            <Text className="text-[13px] text-[#C2C7CB] ml-[5px]">
+                            <Ionicons name="time" size={15} color="black" />
+                            <Text className="text-[13px] text-black ml-[5px]">
                                 January 2, 2025
                             </Text>
                         </View>
                         <View className="w-[50%] flex flex-row items-center">
-                            <Ionicons
-                                name="location"
-                                size={15}
-                                color="#C2C7CB"
-                            />
-                            <Text className="text-[13px] text-[#C2C7CB] ml-[5px]">
+                            <Ionicons name="location" size={15} color="black" />
+                            <Text className="text-[13px] text-black ml-[5px]">
                                 Manila
                             </Text>
                         </View>
@@ -80,7 +76,7 @@ export default function VehicleListingDetailsScreen() {
                             <Text className="text-[14px] font-bold text-[#234791]">
                                 1999
                             </Text>
-                            <Text className="text-[12px] text-[#C2C7CB]">
+                            <Text className="text-[12px] text-black]">
                                 Year
                             </Text>
                         </View>
@@ -88,7 +84,7 @@ export default function VehicleListingDetailsScreen() {
                             <Text className="text-[14px] font-bold text-[#234791]">
                                 Manual
                             </Text>
-                            <Text className="text-[12px] text-[#C2C7CB]">
+                            <Text className="text-[12px] text-black">
                                 Transmission
                             </Text>
                         </View>
@@ -96,9 +92,7 @@ export default function VehicleListingDetailsScreen() {
                             <Text className="text-[14px] font-bold text-[#234791]">
                                 80,000
                             </Text>
-                            <Text className="text-[12px] text-[#C2C7CB]">
-                                KM/s
-                            </Text>
+                            <Text className="text-[12px] text-black">KM/s</Text>
                         </View>
                     </View>
                 </View>

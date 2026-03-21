@@ -1,19 +1,17 @@
-import React, { useState } from 'react'
-import {
-    Image,
-    ScrollView,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-} from 'react-native'
+import React from 'react'
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '@/types/navigation'
 import type { CarListingSummary } from '@/types/listing'
 import { formatPhpCurrency } from '@/utils/formatPhpCurrency'
+
+import toyotaCamry from '@/assets/car-images/toyota-camry.jpg'
+import hondaOdyssey from '@/assets/car-images/honda-odyssey.jpg'
+import fordF150 from '@/assets/car-images/ford-f150.jpg'
+import hdSportster from '@/assets/car-images/hd-sportster.jpg'
+import r34Gtr from '@/assets/car-images/r34-gtr.jpg'
 
 export default function UserListingScreen() {
     const navigation =
@@ -23,40 +21,45 @@ export default function UserListingScreen() {
             id: 1,
             place: 'Los Angeles, CA',
             price: 1400000,
-            model: 'Tesla Model 3',
+            model: 'Toyota Camry',
+            image: toyotaCamry,
         },
         {
             id: 2,
             place: 'Miami, FL',
             price: 1820000,
-            model: 'BMW X5',
+            model: 'Honda Odyssey',
+            image: hondaOdyssey,
         },
         {
             id: 3,
             place: 'New York, NY',
             price: 1060000,
-            model: 'Honda Accord',
+            model: 'Ford F-150',
+            image: fordF150,
         },
         {
             id: 4,
             place: 'Austin, TX',
             price: 1555000,
-            model: 'Ford Mustang',
+            model: 'Nissan Skyline R34 GTR',
+            image: r34Gtr,
         },
         {
             id: 5,
             place: 'Seattle, WA',
             price: 1250000,
-            model: 'Toyota Camry',
+            model: 'Harley-Davidson Sportster',
+            image: hdSportster,
         },
     ]
 
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
-            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
+            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[50px] mb-[10px]">
                 <TouchableOpacity
                     className="flex-row items-center w-[50%]"
-                    onPress={() => navigation.navigate('ProfileView')}
+                    onPress={() => navigation.navigate('ProfileMain')}
                 >
                     <Ionicons name="caret-back" size={24} color="#153A56" />
                     <Text className="text-[20px] font-bold ml-[10px]">
@@ -66,28 +69,31 @@ export default function UserListingScreen() {
             </View>
             <ScrollView>
                 <View className="w-full px-[30px] flex flex-col items-center mb-[15px]">
-                    {carListings.map((item, index) => (
+                    {carListings.map((item) => (
                         <TouchableOpacity
-                            className="w-full rounded-[8px] bg-[#F4F6F8] p-[10px] mb-[25px]"
-                            key={index}
+                            className="w-full rounded-lg bg-[#F4F6F8] p-4 mb-[25px] overflow-hidden"
+                            key={item.id}
                             onPress={() =>
                                 navigation.navigate('MyListingDetails')
                             }
                         >
-                            <Image
-                                source={require('@/assets/images/item-pic-placeholder.png')}
-                                className="w-[100%] h-[200px] rounded-[8px]"
-                                resizeMode="cover"
-                            />
-                            <View className="w-full flex flex-row items-center justify-between p-[16px] mb-[10px]">
-                                <View className="flex flex-col">
-                                    <Text className="text-[20px] font-bold text-[#234791] items-start mb-[8px]">
-                                        {formatPhpCurrency(item.price)}
-                                    </Text>
-                                    <Text className="text-[16px] text-[#153A56] items-start">
+                            <View className="relative w-full h-[200px] rounded-lg mb-3 overflow-hidden">
+                                <Image
+                                    source={item.image}
+                                    className="absolute inset-0 w-full h-full"
+                                    resizeMode="cover"
+                                    accessibilityLabel={item.model}
+                                />
+                                <View className="absolute bottom-0 left-0 right-0 bg-[#000000]/55 px-3 py-2">
+                                    <Text className="text-[16px] font-semibold text-white">
                                         {item.model}
                                     </Text>
                                 </View>
+                            </View>
+                            <View className="w-full">
+                                <Text className="text-[20px] font-bold text-[#234791]">
+                                    {formatPhpCurrency(item.price)}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     ))}

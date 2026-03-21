@@ -27,7 +27,7 @@ export default function UserPostEditScreen() {
 
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
-            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px]">
+            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[50px]">
                 <TouchableOpacity
                     className="flex-row items-center w-[50%]"
                     onPress={() => navigation.goBack()}

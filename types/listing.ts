@@ -17,4 +17,5 @@ export type CarListingSummary = {
     model: string
     /** Amount in PHP (whole pesos). */
     price: number
+    image: ImageSourcePropType
 }

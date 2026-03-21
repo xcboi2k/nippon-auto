@@ -12,7 +12,7 @@ export default function ProfileMenuScreen() {
 
     return (
         <View className="relative flex-1 justify-start pb-[20px] w-full">
-            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[20px] mb-[10px]">
+            <View className="flex-row items-center h-[70px] px-[30px] w-full mt-[50px] mb-[10px]">
                 {/* <TouchableOpacity onPress={() => {}}>
                     <Ionicons name="caret-back" size={24} color="#153A56" />
                 </TouchableOpacity> */}

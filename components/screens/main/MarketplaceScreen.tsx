@@ -204,7 +204,7 @@ export default function MarketplaceScreen() {
                                         <Text className="font-bold text-[#153A56]">
                                             {item.sellerName}
                                         </Text>
-                                        <Text className="text-sm text-[#C2C7CB]">
+                                        <Text className="text-sm text-black">
                                             {item.sellerLocation}
                                         </Text>
                                     </View>
@@ -226,7 +226,7 @@ export default function MarketplaceScreen() {
                                         className="w-full bg-[#234791] py-3 rounded-lg items-center justify-center"
                                         onPress={() =>
                                             navigation.navigate(
-                                                'VehiclePostDetails'
+                                                'VehicleListingDetails'
                                             )
                                         }
                                         activeOpacity={0.8}
@@ -247,7 +247,7 @@ export default function MarketplaceScreen() {
             </ScrollView>
             <TouchableOpacity
                 className="absolute bottom-4 right-6 w-14 h-14 rounded-full bg-[#234791] justify-center items-center shadow-lg"
-                onPress={() => navigation.navigate('VehiclePostCreate')}
+                onPress={() => navigation.navigate('VehicleListingCreate')}
             >
                 <Ionicons name="add" size={28} color="white" />
             </TouchableOpacity>
